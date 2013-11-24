@@ -1,8 +1,6 @@
 #!/usr/bin/perl
 
-# Get all files of a given extension referenced by a page
-# arg1 = page address
-# arg2 = extension
+# Copyright (C) 2013 Matte Célestin
 
 use strict;
 use warnings;
