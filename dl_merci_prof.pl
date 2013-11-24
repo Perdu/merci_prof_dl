@@ -38,7 +38,7 @@ for (my $i = 0 ; $i < $nb_retry ; $i++) {
 		print "$title\n";
 	} else {
 		print "Title not found\n";
-		continue;
+		next;
 	}
 
 	# if file already exists, reload the page
@@ -48,7 +48,7 @@ for (my $i = 0 ; $i < $nb_retry ; $i++) {
 	# in the end...
 	if ( -e "$title.mp4" ) {
 		print "File already exists. Trying again...\n";
-		continue;
+		next;
 	}
 
 	# fetch .smil file
@@ -57,7 +57,7 @@ for (my $i = 0 ; $i < $nb_retry ; $i++) {
 		$page = $mech->content();
 		if (!$ans->is_success) {
 			print "Failed fetching .smil file: $1\n";
-			continue;
+			next;
 		}
 
 		# Fetch .mp4 file
@@ -65,7 +65,7 @@ for (my $i = 0 ; $i < $nb_retry ; $i++) {
 			$ans = $mech->get($mp4_url . $1);
 			if (!$ans->is_success) {
 				print "Failed fetching .mp4 file: $1\n";
-				continue;
+				next;
 			}
 			$mech->save_content($title . '.mp4');
 			print "File $title.mp4 saved\n";
